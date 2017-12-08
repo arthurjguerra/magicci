@@ -41,4 +41,6 @@ class Pipeline:
 
             cmd = self.tasks[task].split()
 
-            p = subprocess.call(cmd, cwd=self.curr_build_dir)
+            if subprocess.call(cmd, cwd=self.curr_build_dir) > 0:
+                print('\n --------- Build Failed -------- \n')
+                exit(1)
