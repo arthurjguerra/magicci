@@ -31,7 +31,7 @@ class Pipeline:
         subprocess.call(['git', 'clone', '--progress', '--verbose', self.repo, self.curr_build_dir])
 
     def checkout(self):
-        subprocess.call(['cd', self.curr_build_dir, '&&', 'git', 'checkout', '--verbose', self.branch])
+        subprocess.call(['git', 'checkout', self.branch], cwd=self.curr_build_dir)
 
     def run_job(self):
         if self.pipeline_name not in self.tasks.keys():
