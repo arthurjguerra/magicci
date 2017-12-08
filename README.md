@@ -1,2 +1,2 @@
-# magicci
-Simple Continuous Integration App in Python
+# Magic CI
+Simple Continuous Integration App in Python.
