@@ -34,18 +34,11 @@ class Pipeline:
         subprocess.call(['git', 'checkout', self.branch], cwd=self.curr_build_dir)
 
     def run_job(self):
-        if self.pipeline_name not in self.tasks.keys():
-            print(self.pipeline_name + ' failed! Invalid task.')
-            exit(1)
-
         for task in self.pipelines[self.pipeline_name]:
             if task not in self.tasks.keys():
                 print(task + ' failed! Invalid task.')
                 exit(1)
 
-            cmd = self.tasks[self.pipeline_name].split()
+            cmd = self.tasks[task].split()
 
-            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, bufsize=1, cwd=self.curr_build_dir)
-            for line in iter(p.stdout.readline, b''):
-                print(line)
-            p.stdout.close()
+            p = subprocess.call(cmd, cwd=self.curr_build_dir)
